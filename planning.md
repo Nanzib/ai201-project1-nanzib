@@ -40,11 +40,11 @@ I chose Computer Science professor and course reviews from Hunter College CUNY. 
      numbers fit the structure of your documents.
      A review-heavy corpus warrants different chunking than a long FAQ. -->
 
-**Chunk size:**
+**Chunk size:** 600 characters
 
-**Overlap:**
+**Overlap:** 150 characters
 
-**Reasoning:**
+**Reasoning:** Rate My Professors data consists of short, independent student reviews. A chunk size of 600 characters keeps individual reviews intact without mixing unrelated reviews for the same professor. The 150-character overlap prevents critical facts (like specific quiz grading weights or course numbers) from being clipped across boundary lines.
 
 ---
 
@@ -56,11 +56,11 @@ I chose Computer Science professor and course reviews from Hunter College CUNY. 
      would you weigh in choosing a different embedding model — context length, multilingual
      support, accuracy on domain-specific text, latency? -->
 
-**Embedding model:**
+**Embedding model:** `all-MiniLM-L6-v2` via `sentence-transformers`
 
-**Top-k:**
+**Top-k:** 4 chunks per query
 
-**Production tradeoff reflection:**
+**Production tradeoff reflection:** If deploying for real users without cost constraints, I would evaluate models like OpenAI's `text-embedding-3-large` to leverage a larger context window and better semantic nuance. However, a cloud API introduces external dependencies, financial costs per token, and higher network latency compared to running `all-MiniLM-L6-v2` locally and free of charge.
 
 ---
 
@@ -73,11 +73,11 @@ I chose Computer Science professor and course reviews from Hunter College CUNY. 
 
 | # | Question | Expected answer |
 |---|----------|-----------------|
-| 1 | | |
-| 2 | | |
-| 3 | | |
-| 4 | | |
-| 5 | | |
+| 1 |How much of the final grade do pop quizzes account for in Eric Schweitzer's CS265 class? |Pop quizzes account for 60% of the final grade. |
+| 2 |Does Professor Shankar post his handwritten lecture notes or homework answers online for CSCI260? |No, he does not post his handwritten notes or homework answers on Brightspace. |
+| 3 |What specific grading criteria does Professor Shostak look for on his CS340 exams? |He is very strict and looks for specific words, terms, and memorized definitions. |
+| 4 |What software tool must students teach themselves to use for the CSCI49383 VR development class projects? |Students must teach themselves to use Unity. |
+| 5 |What resources or grading adjustments does Professor Saad provide to help students pass his difficult CSCI150 class? |He provides generous curves and extra credit opportunities in recitation. |
 
 ---
 
@@ -87,9 +87,9 @@ I chose Computer Science professor and course reviews from Hunter College CUNY. 
      Consider: noisy or inconsistent documents, missing source attribution, off-topic
      retrieval, chunks that split key information across boundaries. -->
 
-1.
+1. Noisy Text Data: The copied reviews contain boilerplate and meta-labels like "Quality", "Difficulty", and "Thumbs up/down". This numerical noise can pollute semantic search results if not handled or filtered during ingestion.
 
-2.
+2. Context Fragmentation: A student's thought might span multiple lines, risking an unnatural split where a professor's name or specific class code is isolated from the actual critique in an adjacent chunk.
 
 ---
 
@@ -101,6 +101,12 @@ I chose Computer Science professor and course reviews from Hunter College CUNY. 
      You can use ASCII art, a Mermaid diagram, or embed a sketch as an image.
      You'll use this diagram as context when prompting AI tools to implement each stage. -->
 
+```mermaid
+graph TD
+    A[Document Ingestion: Local .txt files] --> B[Chunking: Character Split 600/150]
+    B --> C[Embedding & Vector Store: all-MiniLM-L6-v2 + ChromaDB]
+    C --> D[Retrieval: Semantic Similarity Top-4]
+    D --> E[Generation: Groq llama-3.3-70b-versatile]
 ---
 
 ## AI Tool Plan
@@ -115,8 +121,8 @@ I chose Computer Science professor and course reviews from Hunter College CUNY. 
      "I'll give Claude my Chunking Strategy section and ask it to implement chunk_text()
      with my specified chunk size and overlap" is a plan. -->
 
-**Milestone 3 — Ingestion and chunking:**
+**Milestone 3 — Ingestion and chunking:** I will use Copilot. I will feed it the Chunking Strategy section and ask for a Python script that reads all .txt files from our data folder and applies a character split. I will verify it by printing out 5 sample chunks to check that the metadata (source filename) is preserved and the characters don't cut off mid-thought unnecessarily.
 
-**Milestone 4 — Embedding and retrieval:**
+**Milestone 4 — Embedding and retrieval:** I will use Copilot. I will hand it the Retrieval Approach parameters and ask it to build a local vector database initialization using ChromaDB and sentence-transformers. I will verify the output by submitting 3 sample queries and manually checking if the distance scores are under 0.5 and the content matches the intent.
 
-**Milestone 5 — Generation and interface:**
+**Milestone 5 — Generation and interface:** I will use Copilot. I will supply the full prompt requirements along with the Evaluation Plan questions to generate an end-to-end processing script connecting ChromaDB to the Groq API. I will request a minimal Gradio block UI interface. I will verify grounding by asking an out-of-scope question to ensure the system gracefully refuses to answer instead of hallucinating.
