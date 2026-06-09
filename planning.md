@@ -10,7 +10,7 @@
 ## Domain
 
 <!-- What domain did you choose? Why is this knowledge valuable and hard to find through official channels? -->
-
+I chose Computer Science professor and course reviews from Hunter College CUNY. This knowledge is highly valuable because official university course catalogs only show generic course descriptions, completely hiding realities like harsh grading, hidden assignment rules, or professors who do not provide study materials. Access to these raw peer reviews allows students to navigate unhelpful teaching styles, prepare for unexpected workloads, and actually survive the major.
 ---
 
 ## Documents
@@ -20,16 +20,16 @@
 
 | # | Source | Description | URL or location |
 |---|--------|-------------|-----------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
+| 1 |Rate My Professors |Reviews for Prof. Yi |https://www.ratemyprofessors.com/professor/2634841 |
+| 2 |Rate My Professors |Reviews for Prof. Epstein |https://www.ratemyprofessors.com/professor/192300 |
+| 3 |Rate My Professors |Reviews for Prof. Shostak|https://www.ratemyprofessors.com/professor/1823870 |
+| 4 |Rate My Professors |Reviews for Prof. Oyekoya |https://www.ratemyprofessors.com/professor/2558461 |
+| 5 |Rate My Professors |Reviews for Prof. St. John |https://www.ratemyprofessors.com/professor/2324096 |
+| 6 |Rate My Professors |Reviews for Prof. Shankar |https://www.ratemyprofessors.com/professor/257190 |
+| 7 |Rate My Professors |Reviews for Prof. Tojeira |https://www.ratemyprofessors.com/professor/1660967 |
+| 8 |Rate My Professors |Reviews for Prof. Naing |https://www.ratemyprofessors.com/professor/2693848 |
+| 9 |Rate My Professors |Reviews for Prof. Schweitzer |https://www.ratemyprofessors.com/professor/257192 |
+| 10 |Rate My Professors |Reviews for Prof. Mneimneh |https://www.ratemyprofessors.com/professor/926045 |
 
 ---
 
